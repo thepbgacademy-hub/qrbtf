@@ -17,6 +17,39 @@ The v1 experience should feel like a creative tool:
 - The app displays the final image and scan status.
 - A failed scan can still be viewed and downloaded because hidden-art quality is the primary v1 goal.
 
+## QRBTF Layout Alignment
+
+The UI should follow the original QRBTF `/en` generation layout closely. We are adding a new image-based art QR style, not inventing a separate dashboard or account workflow.
+
+The page structure should remain:
+
+1. Top hero/header area with the QR payload URL/text input and scan action.
+2. Horizontal style selector.
+3. Main style generator section.
+4. Left column for style controls.
+5. Right column for the generate action, output preview, scan status, and download action.
+
+The control set should adapt QRBTF's G1 art QR controls to our uploaded-image workflow:
+
+- Source image upload, required for v1.
+- Prompt, required.
+- Negative prompt, optional.
+- Seed.
+- Hidden Art Blend, replacing or renaming QRBTF's control strength for this style. Higher values should preserve the uploaded image and hide QR structure more aggressively.
+- QR Visibility or Scan Strictness, secondary. This lets the user trade hidden-art quality for easier scanning when needed.
+- Size, square output by default.
+- Padding ratio.
+- Correct level, secondary and explained as more visible when higher.
+- Anchor style, defaulting to minimal or blended.
+
+Output behavior should mirror QRBTF's right-side output panel:
+
+- The generate button remains near the output preview.
+- Generation progress overlays the output square.
+- The final art QR appears in the output square.
+- Scan status appears as result metadata, not as a separate dashboard card.
+- Download remains attached to the output panel.
+
 ## Scope
 
 ### In Scope
@@ -54,19 +87,22 @@ Responsibilities:
 - Render the result visualizer.
 - Keep form state local through the existing `QrcodeGenerator` pattern.
 
-### 2. Frontend Dashboard Surface
+### 2. Frontend Generator Surface
 
 Use the existing QRBTF split layout instead of a separate account/dashboard page. This keeps the feature discoverable with other QR styles and avoids new navigation complexity.
 
 Controls:
 
-- Prompt, required.
 - Source image upload, required for v1.
-- Hidden-art blend, default high.
-- QR visibility or scan strictness, default low-to-medium.
+- Prompt, required.
+- Negative prompt, optional.
 - Seed.
+- Hidden Art Blend, default high for stronger visual disguise.
+- QR Visibility or Scan Strictness, default low-to-medium.
 - Size, default square.
-- Optional advanced values: padding, finder visibility, negative prompt.
+- Padding ratio.
+- Correct level.
+- Anchor style, default minimal or blended.
 
 Output:
 
