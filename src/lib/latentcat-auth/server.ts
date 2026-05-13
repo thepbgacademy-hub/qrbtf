@@ -7,6 +7,10 @@ import { cookies } from "next/headers";
 
 export const getServerSession = cache(
   async (): Promise<QrbtfUser | undefined> => {
+    if (process.env.QRBTF_SKIP_SERVER_SESSION === "true") {
+      return undefined;
+    }
+
     const cookie = cookies();
     const resp = await fetch(`${NEXT_PUBLIC_QRBTF_API_ENDPOINT}/auth/session`, {
       headers: {

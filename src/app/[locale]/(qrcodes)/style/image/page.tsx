@@ -1,5 +1,6 @@
-import { QrcodeGenerator } from "@/components/QrcodeGenerator";
+import QrcodeGeneratorWithProvider from "@/components/QrcodeGeneratorWithProvider";
 import { qrbtfModuleImage } from "@/lib/qrbtf_lib/qrcodes/image";
+import type { QrbtfRendererImageProps } from "@/lib/qrbtf_lib/qrcodes/image";
 import { useImageParams } from "@/lib/qrbtf_lib/qrcodes/image_config";
 import { useTranslations } from "next-intl";
 
@@ -8,7 +9,7 @@ export default function Page() {
   const { params } = useImageParams();
 
   return (
-    <QrcodeGenerator
+    <QrcodeGeneratorWithProvider<QrbtfRendererImageProps>
       title={t("title")}
       label={t("label")}
       subtitle={t("subtitle")}
