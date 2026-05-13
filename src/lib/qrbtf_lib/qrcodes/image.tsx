@@ -13,10 +13,10 @@ export interface QrbtfRendererImageProps {
   sourceImage: string;
   prompt: string;
   negativePrompt: string;
-  seed: number;
+  seedHint: number;
   hiddenArtBlend: number;
   scanStrictness: number;
-  size: "1024x1024" | "1536x1536";
+  size: "1024x1024";
   paddingRatio: number;
   correctLevel: "7" | "15" | "25" | "30";
   anchorStyle: "minimal" | "square" | "circle" | "blended";

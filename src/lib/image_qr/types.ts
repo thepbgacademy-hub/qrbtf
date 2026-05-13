@@ -3,8 +3,8 @@ export type ImageQrScanStatus = "pending" | "passed" | "failed" | "skipped";
 export interface ImageQrGenerationOptions {
   hiddenArtBlend: number;
   scanStrictness: number;
-  seed: number;
-  size: "1024x1024" | "1536x1536";
+  seedHint: number;
+  size: "1024x1024";
   paddingRatio: number;
   correctLevel: "7" | "15" | "25" | "30";
   anchorStyle: "minimal" | "square" | "circle" | "blended";

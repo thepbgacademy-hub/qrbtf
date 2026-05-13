@@ -49,8 +49,6 @@
       "page_view": "ページビュー数"
     },
     "qa": {
-      "title": "よくある質問",
-      "subtitle": "",
       "0": {
         "q": "どうすれば始められますか？",
         "a": "正面のプロンプトフィールドに好きな内容を入力し、リンクの長さに応じてコントロールの強度を調整してください。現在のモデルは、風景、オブジェクト、建築などでうまく機能します。"
@@ -78,7 +76,9 @@
       "6": {
         "q": "今後の計画",
         "a": "近いうちに、より多くの事例のギャラリーと、より強力なバージョンのモデルをオンラインにする予定です。"
-      }
+      },
+      "title": "よくある質問",
+      "subtitle": ""
     },
     "refs": {
       "title": "参考",
@@ -373,10 +373,6 @@
         "desc": "Elements to avoid.",
         "placeholder": "obvious QR squares, harsh grid, extra text"
       },
-      "seed": {
-        "label": "Seed",
-        "desc": "Use -1 for a random seed."
-      },
       "hiddenArtBlend": {
         "label": "Hidden Art Blend",
         "desc": "Higher values favor artwork-first results."
@@ -404,6 +400,10 @@
         "blended": "Blended",
         "square": "Square",
         "circle": "Circle"
+      },
+      "seedHint": {
+        "label": "Seed hint",
+        "desc": "Use -1 for no seed hint. This is not deterministic."
       }
     }
   },

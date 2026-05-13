@@ -9,7 +9,7 @@ export const ImagePresets: Record<ImagePresetKeys, QrbtfRendererImageProps> = {
     sourceImage: "",
     prompt: "",
     negativePrompt: "",
-    seed: -1,
+    seedHint: -1,
     hiddenArtBlend: 0.85,
     scanStrictness: 0.35,
     size: "1024x1024",
@@ -45,9 +45,9 @@ export function useImageParams() {
     },
     {
       type: "number",
-      name: "seed",
-      label: t("seed.label"),
-      desc: t("seed.desc"),
+      name: "seedHint",
+      label: t("seedHint.label"),
+      desc: t("seedHint.desc"),
       config: { min: -1, max: 9999 },
     },
     {
@@ -72,7 +72,6 @@ export function useImageParams() {
       config: {
         values: [
           { value: "1024x1024", label: "1024px" },
-          { value: "1536x1536", label: "1536px" },
         ],
       },
     },
@@ -81,7 +80,7 @@ export function useImageParams() {
       name: "paddingRatio",
       label: t("paddingRatio.label"),
       desc: t("paddingRatio.desc"),
-      config: { min: 0, max: 0.5, step: 0.01 },
+      config: { min: 0, max: 0.4, step: 0.01 },
     },
     {
       type: "select",

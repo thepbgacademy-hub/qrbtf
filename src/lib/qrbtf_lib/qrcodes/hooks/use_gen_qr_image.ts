@@ -1,6 +1,7 @@
 import { urlAtom } from "@/lib/states";
 import { useAtomValue } from "jotai";
 import { useState } from "react";
+import { toast } from "sonner";
 import {
   ImageQrGenerationOptions,
   ImageQrGenerateRequest,
@@ -19,7 +20,7 @@ export default function useGenQrImage() {
   const [generating, setGenerating] = useState(false);
   const [status, setStatus] = useState<ImageQrUiStatus>("idle");
   const [resData, setResData] = useState<ImageQrGenerateResponse | null>(null);
-  const url = useAtomValue(urlAtom) || "https://qrbtf.com";
+  const url = useAtomValue(urlAtom);
 
   async function onSubmit(values: Omit<ImageQrGenerateRequest, "url" | "options"> & ImageQrGenerationOptions) {
     setGenerating(true);
@@ -28,6 +29,21 @@ export default function useGenQrImage() {
 
     try {
       const { sourceImage, prompt, negativePrompt, ...options } = values;
+      if (!url) {
+        toast.error("Please enter a URL or text to encode.");
+        setStatus("failed");
+        return;
+      }
+      if (!sourceImage) {
+        toast.error("Please upload a source image.");
+        setStatus("failed");
+        return;
+      }
+      if (!prompt.trim()) {
+        toast.error("Please enter an art prompt.");
+        setStatus("failed");
+        return;
+      }
       setStatus("generating");
       const response = await fetch("/api/image-qr/generate", {
         method: "POST",
@@ -43,6 +59,9 @@ export default function useGenQrImage() {
       setStatus("verifying_scan");
       const data = (await response.json()) as ImageQrGenerateResponse;
       setResData(data);
+      if (!response.ok && data.error) {
+        toast.error(data.error);
+      }
       setStatus(data.status === "completed" ? "completed" : "failed");
     } catch {
       setResData({
@@ -51,7 +70,7 @@ export default function useGenQrImage() {
         scan: {
           status: "skipped",
           decodedText: null,
-          expectedText: url,
+          expectedText: url || "",
           message: "Request failed before generation completed.",
         },
         error: "Image QR request failed.",

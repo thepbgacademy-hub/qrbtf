@@ -49,8 +49,6 @@
       "page_view": "Page view"
     },
     "qa": {
-      "title": "FAQ",
-      "subtitle": "",
       "0": {
         "q": "How to get started?",
         "a": "Enter any content you want in the positive prompt. Adjust the control strength according to the link length. The current model performs well in landscapes, objects, and architecture."
@@ -78,7 +76,9 @@
       "6": {
         "q": "Future plans",
         "a": "We will soon launch a gallery with more case studies, as well as update a more powerful version of the model."
-      }
+      },
+      "title": "FAQ",
+      "subtitle": ""
     },
     "refs": {
       "title": "References",
@@ -373,10 +373,6 @@
         "desc": "Elements to avoid.",
         "placeholder": "obvious QR squares, harsh grid, extra text"
       },
-      "seed": {
-        "label": "Seed",
-        "desc": "Use -1 for a random seed."
-      },
       "hiddenArtBlend": {
         "label": "Hidden Art Blend",
         "desc": "Higher values favor artwork-first results."
@@ -404,6 +400,10 @@
         "blended": "Blended",
         "square": "Square",
         "circle": "Circle"
+      },
+      "seedHint": {
+        "label": "Seed hint",
+        "desc": "Use -1 for no seed hint. This is not deterministic."
       }
     }
   },

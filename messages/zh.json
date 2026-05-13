@@ -49,8 +49,6 @@
       "page_view": "页面访问量"
     },
     "qa": {
-      "title": "常见问题",
-      "subtitle": "",
       "0": {
         "q": "如何开始？",
         "a": "在正面提示词中输入任意你想要的内容，根据链接长度调整控制强度，当前模型在风景，物体，建筑等方面表现较好。"
@@ -78,7 +76,9 @@
       "6": {
         "q": "未来规划",
         "a": "我们会在不久后上线更多案例的画廊，以及更新更强大版本的模型"
-      }
+      },
+      "title": "常见问题",
+      "subtitle": ""
     },
     "refs": {
       "title": "参考",
@@ -373,10 +373,6 @@
         "desc": "Elements to avoid.",
         "placeholder": "obvious QR squares, harsh grid, extra text"
       },
-      "seed": {
-        "label": "Seed",
-        "desc": "Use -1 for a random seed."
-      },
       "hiddenArtBlend": {
         "label": "Hidden Art Blend",
         "desc": "Higher values favor artwork-first results."
@@ -404,6 +400,10 @@
         "blended": "Blended",
         "square": "Square",
         "circle": "Circle"
+      },
+      "seedHint": {
+        "label": "Seed hint",
+        "desc": "Use -1 for no seed hint. This is not deterministic."
       }
     }
   },

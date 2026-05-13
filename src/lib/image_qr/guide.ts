@@ -74,7 +74,7 @@ export function renderQrGuidePngDataUrl(
   const modules = table.length;
   const size = Number(options.size.split("x")[0]);
   const padding = Math.round(size * options.paddingRatio);
-  const usable = size - padding * 2;
+  const usable = Math.max(1, size - padding * 2);
   const cell = usable / modules;
   const png = new PNG({ width: size, height: size });
 

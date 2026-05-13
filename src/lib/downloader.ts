@@ -63,6 +63,12 @@ function svgToImage(
 }
 
 async function srcToImage(name: string, src: string) {
+  if (src.startsWith("data:image/")) {
+    const suffix = src.startsWith("data:image/png") ? "png" : "jpg";
+    createDownloadTask(src, `QRcode_${name}.${suffix}`);
+    return;
+  }
+
   const parsedUrl = new URL(src);
   const pathname = parsedUrl.pathname;
   const suffix = pathname.split(".").pop() || "jpg";

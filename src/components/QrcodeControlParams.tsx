@@ -57,10 +57,13 @@ import { Dices, LucideUpload } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { trackEvent } from "@/components/TrackComponents";
 import { Badge } from "./ui/badge";
+import { toast } from "sonner";
 
 export type ControlCommonProps<P extends FieldValues> = CommonControlProps<P> & {
   field: ControllerRenderProps<P, Path<P>>;
 };
+
+const MAX_UPLOAD_IMAGE_BYTES = 4 * 1024 * 1024;
 
 interface ParamItemProps {
   children: React.ReactNode;
@@ -403,7 +406,15 @@ export function ParamImageControl<P extends FieldValues>(
   const onImageUpload: ChangeEventHandler<HTMLInputElement> = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      const base64 = await toBase64(file, 1.0);
+      if (!["image/png", "image/jpeg", "image/webp"].includes(file.type)) {
+        toast.error("Please upload a PNG, JPEG, or WebP image.");
+        return;
+      }
+      if (file.size > MAX_UPLOAD_IMAGE_BYTES) {
+        toast.error("Please upload an image smaller than 4 MB.");
+        return;
+      }
+      const base64 = await toBase64(file, 1.0, 1024);
       props.field.onChange(base64);
     }
   };
@@ -418,7 +429,7 @@ export function ParamImageControl<P extends FieldValues>(
               ref={inputRef}
               className="hidden"
               type="file"
-              accept="image/*"
+              accept="image/png,image/jpeg,image/webp"
               onChange={onImageUpload}
             />
             <Button

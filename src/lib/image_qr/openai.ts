@@ -26,9 +26,9 @@ function dataUrlToImage(dataUrl: string) {
 }
 
 function generationPrompt(request: ImageQrGenerateRequest) {
-  const seed =
-    request.options.seed >= 0
-      ? `Use seed ${request.options.seed} as a consistency hint.`
+  const seedHint =
+    request.options.seedHint >= 0
+      ? `Use seed hint ${request.options.seedHint} as a consistency cue.`
       : "";
 
   return [
@@ -41,7 +41,7 @@ function generationPrompt(request: ImageQrGenerateRequest) {
     `Hidden art blend: ${request.options.hiddenArtBlend}`,
     `Scan strictness: ${request.options.scanStrictness}`,
     `Anchor style: ${request.options.anchorStyle}`,
-    seed,
+    seedHint,
   ]
     .filter(Boolean)
     .join("\n");

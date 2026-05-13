@@ -1,4 +1,8 @@
-export function toBase64(file: File, aspectRatio: number = 1) {
+export function toBase64(
+  file: File,
+  aspectRatio: number = 1,
+  maxDimension?: number,
+) {
   let canvas = document.createElement("canvas");
   let ctx = canvas.getContext("2d");
   let img = document.createElement("img");
@@ -15,8 +19,14 @@ export function toBase64(file: File, aspectRatio: number = 1) {
         width = height * aspectRatio;
       }
 
-      canvas.setAttribute("width", width.toString());
-      canvas.setAttribute("height", height.toString());
+      if (maxDimension && Math.max(width, height) > maxDimension) {
+        const scale = maxDimension / Math.max(width, height);
+        width = Math.round(width * scale);
+        height = Math.round(height * scale);
+      }
+
+      canvas.setAttribute("width", Math.round(width).toString());
+      canvas.setAttribute("height", Math.round(height).toString());
 
       if (ctx) {
         ctx.fillStyle = "white";
