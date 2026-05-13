@@ -1,11 +1,7 @@
 import type { Viewport } from "next";
-import { Inter } from "next/font/google";
 import "../globals.css";
 import { Providers } from "@/app/providers";
 import { Footer } from "@/components/Footer";
-import { LayoutHead } from "@/lib/layout_data";
-
-const inter = Inter({ subsets: ["latin"] });
 
 import { layoutViewport } from "@/lib/layout_data";
 import { Header } from "@/components/Header";
@@ -33,8 +29,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className="antialiased" suppressHydrationWarning>
-      <LayoutHead />
-      <body className={cn(inter.className, "")}>
+      <body className={cn("font-sans")}>
         <SessionProvider session={{ data: session }}>
           <Providers>
             <NextIntlClientProvider

@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-head-element */
 import { type Metadata, Viewport } from "next";
 
 import { getTranslations } from "next-intl/server";
@@ -31,8 +30,7 @@ export async function generateMetadata({
       t("keywords.9"),
     ],
     openGraph: {
-      images:
-        "https://dt00g2eb5etby3xu.public.blob.vercel-storage.com/assets/qrbtf_kv-gXzB1cMYlyXQQrhza3HoQlH1WydQpe.jpg",
+      images: [],
     },
   };
 }
@@ -70,18 +68,3 @@ export const layoutViewport: Viewport = {
   viewportFit: "cover",
 };
 
-export function LayoutHead() {
-  return (
-    <head>
-      <link rel="manifest" href="/manifest.json" />
-      <link
-        rel="apple-touch-icon"
-        href="/apple-touch-icon?<generated>"
-        type="image/<generated>"
-        sizes="<generated>"
-      />
-      <meta content="yes" name="apple-mobile-web-app-capable" />
-      <meta name="theme-color" content="#000000" />
-    </head>
-  );
-}
