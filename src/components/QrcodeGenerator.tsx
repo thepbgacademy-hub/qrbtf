@@ -61,7 +61,11 @@ export interface QrcodeGeneratorProps<P extends {}>
 export function QrcodeGenerator<P extends {}>(props: QrcodeGeneratorProps<P>) {
   const t = useTranslations("index.params");
   const url = useAtomValue(urlAtom);
-  const { onSubmit, generating, resData } = useGenAiImage();
+  const submitHook =
+    props.qrcodeModule.type === "api_fetcher" && props.qrcodeModule.useSubmit
+      ? props.qrcodeModule.useSubmit
+      : useGenAiImage;
+  const { onSubmit, generating, resData } = submitHook();
 
   const { params, defaultPreset } = props;
   const presets = props.qrcodeModule.presets;
@@ -244,7 +248,12 @@ export function QrcodeGenerator<P extends {}>(props: QrcodeGeneratorProps<P>) {
                       </>
                     )}
                     {props.qrcodeModule.type === "api_fetcher" && (
-                      <>{props.qrcodeModule.visualizer({ data: resData })}</>
+                      <>
+                        {props.qrcodeModule.visualizer({
+                          data: resData,
+                          generating,
+                        })}
+                      </>
                     )}
                   </div>
                 </div>

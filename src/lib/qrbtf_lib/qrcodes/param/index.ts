@@ -12,7 +12,12 @@ export interface QrbtfModuleSvgRenderer<P> {
 
 export interface QrbtfModuleApiFetcher<P> {
   type: "api_fetcher";
-  visualizer: (props: { data: any }) => React.ReactNode;
+  visualizer: (props: { data: any; generating?: boolean }) => React.ReactNode;
+  useSubmit?: () => {
+    onSubmit: (values: any) => Promise<void>;
+    generating: boolean;
+    resData: any;
+  };
 }
 
 export type CommonControlProps<P> = {

@@ -352,6 +352,59 @@
         "circle": "円形",
         "minimal": "最小"
       }
+    },
+    "image": {
+      "title": "Image QR",
+      "label": "New",
+      "subtitle": "Hide a working QR code inside uploaded artwork.",
+      "desc": "Upload a source image, describe the art direction, and generate an art-first QR candidate with scan feedback.",
+      "sourceImage": {
+        "label": "Source image",
+        "desc": "Upload the artwork to transform.",
+        "button": "Upload image"
+      },
+      "prompt": {
+        "label": "Prompt",
+        "desc": "Describe how the QR structure should blend into the image.",
+        "placeholder": "white ribbons and silver ornaments woven through the scene"
+      },
+      "negativePrompt": {
+        "label": "Negative prompt",
+        "desc": "Elements to avoid.",
+        "placeholder": "obvious QR squares, harsh grid, extra text"
+      },
+      "seed": {
+        "label": "Seed",
+        "desc": "Use -1 for a random seed."
+      },
+      "hiddenArtBlend": {
+        "label": "Hidden Art Blend",
+        "desc": "Higher values favor artwork-first results."
+      },
+      "scanStrictness": {
+        "label": "Scan Strictness",
+        "desc": "Higher values make the QR structure more visible."
+      },
+      "size": {
+        "label": "Size",
+        "desc": "Output image size."
+      },
+      "paddingRatio": {
+        "label": "Padding ratio",
+        "desc": "Quiet border around the QR structure."
+      },
+      "correctLevel": {
+        "label": "Correct level",
+        "desc": "Higher correction can improve scans but may reveal more structure."
+      },
+      "anchorStyle": {
+        "label": "Anchor style",
+        "desc": "How visible the QR finder anchors should be.",
+        "minimal": "Minimal",
+        "blended": "Blended",
+        "square": "Square",
+        "circle": "Circle"
+      }
     }
   },
   "footer": {
