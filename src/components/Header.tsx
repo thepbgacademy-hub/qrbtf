@@ -297,7 +297,7 @@ export function Header() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [setIsTitle, setIsTop]);
 
   return (
     <>

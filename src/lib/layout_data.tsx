@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-head-element */
 import { type Metadata, Viewport } from "next";
 
 import { getTranslations } from "next-intl/server";

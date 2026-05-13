@@ -2,7 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { LucideScan } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useAtom } from "jotai/index";
 import { urlAtom } from "@/lib/states";
 import { toast } from "sonner";
@@ -13,7 +13,7 @@ export function ScanButton(props: { name: string }) {
   const [url, setUrl] = useAtom(urlAtom);
 
   // 准备扫描库、挂上监听函数，返回取消监听的方法
-  const prepareScan = async () => {
+  const prepareScan = useCallback(async () => {
     // 这样做的目的是，在页面加载完后加载扫描模块，因为不是每个人都会用到这个功能，延迟加载
     const Html5Qrcode = await import("html5-qrcode").then(
       (module) => module.Html5Qrcode,
@@ -50,7 +50,7 @@ export function ScanButton(props: { name: string }) {
 
     // 返回取消监听的函数，注意，是一个封装在 () => (() => void) 里的函数
     return () => scanRef.current?.removeEventListener("change", onFileChange);
-  };
+  }, [setUrl]);
 
   // 在 useEffect 的生命周期中挂上监听和取消监听
   useEffect(() => {
@@ -59,7 +59,7 @@ export function ScanButton(props: { name: string }) {
     return () => {
       removeListener();
     };
-  }, []);
+  }, [prepareScan]);
 
   return (
     <>
