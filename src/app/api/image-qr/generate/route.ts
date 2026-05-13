@@ -2,12 +2,12 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { renderQrGuidePngDataUrl } from "@/lib/image_qr/guide";
 import { generateImageQrWithOpenAI } from "@/lib/image_qr/openai";
-import { getServerSession } from "@/lib/latentcat-auth/server";
 import type {
   ImageQrGenerateRequest,
   ImageQrGenerateResponse,
 } from "@/lib/image_qr/types";
 import { verifyGeneratedQrPng } from "@/lib/image_qr/verify";
+import { cookies } from "next/headers";
 
 export const runtime = "nodejs";
 
@@ -22,6 +22,18 @@ function decodedBase64Bytes(dataUrl: string) {
   const base64 = dataUrl.slice(dataUrl.indexOf("base64,") + "base64,".length);
   const padding = base64.endsWith("==") ? 2 : base64.endsWith("=") ? 1 : 0;
   return Math.floor((base64.length * 3) / 4) - padding;
+}
+
+async function hasActiveSession() {
+  const endpoint = process.env.NEXT_PUBLIC_QRBTF_API_ENDPOINT;
+  if (!endpoint) return false;
+
+  const resp = await fetch(`${endpoint}/auth/session`, {
+    headers: {
+      Cookie: `lc_token=${cookies().get("lc_token")?.value || ""}`,
+    },
+  });
+  return resp.ok;
 }
 
 const requestSchema = z.object({
@@ -44,8 +56,8 @@ export async function POST(req: Request) {
   let parsed: ImageQrGenerateRequest;
 
   if (REQUIRE_SESSION) {
-    const session = await getServerSession();
-    if (!session) {
+    const isSignedIn = await hasActiveSession();
+    if (!isSignedIn) {
       const response: ImageQrGenerateResponse = {
         status: "failed",
         imageDataUrl: null,

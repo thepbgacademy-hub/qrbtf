@@ -138,6 +138,8 @@ const SvgQrcodeDownloaders: Record<string, Downloader> = withReport({
 const ApiFetcherQrcodeDownloaders: Record<string, Downloader> = withReport({
   jpg: ({ name, wrapper }) =>
     srcToImage(name, wrapper.getElementsByTagName("img")[0].src),
+  png: ({ name, wrapper }) =>
+    srcToImage(name, wrapper.getElementsByTagName("img")[0].src),
 });
 
 const downloaderMaps: Record<
