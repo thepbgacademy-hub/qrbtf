@@ -47,6 +47,7 @@ import {
   SelectValue,
 } from "./ui/select";
 import { useSession } from "@/lib/latentcat-auth/client";
+import { UrlInput } from "@/components/hero/UrlInput";
 
 export interface QrcodeGeneratorProps<P extends {}>
   extends HTMLAttributes<HTMLDivElement> {
@@ -131,6 +132,10 @@ export function QrcodeGenerator<P extends {}>(props: QrcodeGeneratorProps<P>) {
               <div>
                 <Form {...form}>
                   <form className="not-prose _divide-y">
+                    <div className="flex min-h-[52px] flex-col items-stretch justify-center py-3">
+                      <Label className="mb-1.5">Target URL</Label>
+                      <UrlInput />
+                    </div>
                     {Object.keys(presets).length > 1 && (
                       <div className="_py-1 flex flex-col items-stretch justify-center min-h-[52px]">
                         <Select value={preset} onValueChange={setPreset}>
@@ -243,7 +248,7 @@ export function QrcodeGenerator<P extends {}>(props: QrcodeGeneratorProps<P>) {
                       <>
                         {props.qrcodeModule.renderer({
                           className: "w-full bg-white",
-                          url: url || "https://qrbtf.com",
+                          url: url || "https://example.com",
                           ...componentProps,
                         })}
                       </>

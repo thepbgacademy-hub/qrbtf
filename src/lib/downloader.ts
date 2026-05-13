@@ -1,7 +1,5 @@
-import { trackEvent } from "@/components/TrackComponents";
 import { http } from "./network";
 import { QrbtfModule } from "./qrbtf_lib/qrcodes/param";
-import { NEXT_PUBLIC_QRBTF_API_ENDPOINT } from "./env/client";
 
 function createDownloadTask(href: string, filename: string) {
   const a = document.createElement("a");
@@ -94,35 +92,7 @@ function withReport(
 ): Record<string, Downloader> {
   for (const type in downloaders) {
     const origin = downloaders[type];
-    downloaders[type] = (options) => {
-      const { name, params, userId } = options;
-      const dataToReport = {
-        user_id: userId,
-        type: name,
-        ...params,
-      };
-      trackEvent("download_qrcode", dataToReport);
-      // WebKit bug: https://bugs.webkit.org/show_bug.cgi?id=270102
-      Promise.all([
-        http(`${NEXT_PUBLIC_QRBTF_API_ENDPOINT}/count/update_count`, {
-          method: "POST",
-          body: JSON.stringify({
-            collection_name: "counter_style",
-            name: name,
-          }),
-        }),
-        http(`${NEXT_PUBLIC_QRBTF_API_ENDPOINT}/count/update_count`, {
-          method: "POST",
-          body: JSON.stringify({
-            collection_name: "counter_global",
-            name: "download_count",
-          }),
-        }),
-        http(`${NEXT_PUBLIC_QRBTF_API_ENDPOINT}/user_stat/inc_download_count`, {
-          method: "POST",
-        }),
-      ]).finally(() => origin(options));
-    };
+    downloaders[type] = (options) => origin(options);
   }
   return downloaders;
 }

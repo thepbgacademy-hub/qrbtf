@@ -9,7 +9,7 @@ export function UrlInput() {
   return (
     <>
       <Input
-        placeholder="https://qrbtf.com"
+        placeholder="https://example.com"
         value={url}
         onChange={(e) => setUrl(e.target.value)}
       />

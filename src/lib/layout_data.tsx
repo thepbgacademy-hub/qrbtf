@@ -12,7 +12,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "metadata" });
 
   return {
-    metadataBase: new URL("https://qrbtf.com"),
+    metadataBase: new URL("http://localhost:3000"),
     title: {
       template: t("title.template"),
       default: t("title.default"),
@@ -38,26 +38,25 @@ export async function generateMetadata({
 }
 
 export const layoutMetadata: Metadata = {
-  metadataBase: new URL("https://qrbtf.com"),
+  metadataBase: new URL("http://localhost:3000"),
   title: {
-    template: "%s - QRBTF",
-    default: "QRBTF - #1 AI QR Code Generator",
+    template: "%s - PBG Art QR Studio",
+    default: "PBG Art QR Studio",
   },
-  description: "The world's first and best AI QR code generator.",
+  description: "A local studio for generating hidden-image QR artwork.",
   keywords: [
     "QR Code",
     "qrcode",
     "AI QR Code",
     "AI qrcode",
     "Parametric QR Code",
-    "QRBTF",
+    "PBG Art QR Studio",
     "Mid Real",
     "midreal",
   ],
   openGraph: {
     // title: 'Troy Ni',
-    images:
-      "https://dt00g2eb5etby3xu.public.blob.vercel-storage.com/assets/qrbtf_kv-gXzB1cMYlyXQQrhza3HoQlH1WydQpe.jpg",
+    images: [],
   },
 };
 
@@ -83,8 +82,6 @@ export function LayoutHead() {
       />
       <meta content="yes" name="apple-mobile-web-app-capable" />
       <meta name="theme-color" content="#000000" />
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5528400803664104"
-        crossOrigin="anonymous"></script>
     </head>
   );
 }

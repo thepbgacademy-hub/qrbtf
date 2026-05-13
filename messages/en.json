@@ -1,17 +1,17 @@
 {
   "metadata": {
     "title": {
-      "template": "%s - QRBTF",
-      "default": "QRBTF - AI QR Code Generator"
+      "template": "%s - PBG Art QR Studio",
+      "default": "PBG Art QR Studio"
     },
-    "description": "The world's first and best AI QR code generator.",
+    "description": "A local studio for generating hidden-image QR artwork.",
     "keywords": {
       "0": "QR Code",
       "1": "qrcode",
       "2": "AI QR Code",
       "3": "AI qrcode",
       "4": "Parametric QR Code",
-      "5": "QRBTF",
+      "5": "PBG Art QR Studio",
       "6": "Mid Real",
       "7": "midreal",
       "8": "",
@@ -20,8 +20,8 @@
   },
   "index": {
     "hero": {
-      "title": "QRBTF",
-      "subtitle": "AI & Parametric QR code generator.",
+      "title": "PBG Art QR Studio",
+      "subtitle": "Hidden-image QR generator.",
       "join_discord": "Join our Discord",
       "by": " By ",
       "period": ".",
@@ -44,7 +44,7 @@
       "title": "Statistics",
       "subtitle": "",
       "github_stars": "GitHub stars",
-      "generate_count": "AI QR code generated",
+      "generate_count": "Art QR codes generated",
       "download_count": "Total downloads",
       "page_view": "Page view"
     },
@@ -354,8 +354,8 @@
       }
     },
     "image": {
-      "title": "Image QR",
-      "label": "New",
+      "title": "Art QR Generator",
+      "label": "Prototype",
       "subtitle": "Hide a working QR code inside uploaded artwork.",
       "desc": "Upload a source image, describe the art direction, and generate an art-first QR candidate with scan feedback.",
       "sourceImage": {
